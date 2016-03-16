@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Rebase from 're-base';
+import Card from './card.jsx';
 
 var base = Rebase.createClass('https://ramunas.firebaseio.com');
 
 class CardsList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cards: props.cards };
+    this.state = { cards: [] };
   }
   componentDidMount() {
-    this.ref = base.bindToState('posts', {
+    this.ref = base.bindToState('cards', {
        context: this,
        state: 'cards',
        asArray: true
@@ -21,19 +22,25 @@ class CardsList extends React.Component {
      base.removeBinding(this.ref);
   }
   render() {
-    console.log(this.state)
-    for (let i = 0; i < this.cards.length; i+=3) {
-       console.log(i);
-    }
+    // console.log(this.state)
+    // for (let i = 0; i < this.cards.length; i+=3) {
+    //    console.log(i);
+    // }
     return (
       <div className="w3-container">
-            <div className="w3-row">
-              <div className="w3-col" style={{ width: '14%' }}>n</div>
-              <div className="w3-col" style={{ width: '24%' }}>n</div>
-              <div className="w3-col" style={{ width: '24%' }}></div>
-              <div className="w3-col" style={{ width: '24%' }}></div>
-              <div className="w3-col" style={{ width: '14%' }}></div>
-            </div>
+        <div className="w3-row">
+          <div className="w3-col" style={{ width: '14%' }}><br/></div>
+          <div className="w3-col" style={{ width: '24%' }}>
+            <Card {...this.state.cards[0]} />
+          </div>
+          <div className="w3-col" style={{ width: '24%' }}>
+            <Card {...this.state.cards[0]} />
+          </div>
+          <div className="w3-col" style={{ width: '24%' }}>
+            <Card {...this.state.cards[0]} />
+          </div>
+          <div className="w3-col" style={{ width: '14%' }}><br/></div>
+        </div>
       </div>
     );
   }

@@ -20,28 +20,30 @@ class Card extends React.Component {
 
     return (
       <div className="w3-card-4 w3-margin">
-        <header className="w3-container w3-light-grey">
-      // "style": "padding-top: 10px"
-          <span className="w3-tag w3-round w3-indigo">
+        <header className="w3-container w3-light-grey w3-padding-8">
+          <span className="w3-tag w3-round w3-indigo w3-margin-2">
             {date.getDate() + ' ' + months[date.getMonth()] + ', ' + date.getFullYear()}
           </span>
-          <span className="w3-tag w3-round w3-teal">
+          <span className="w3-tag w3-round w3-teal w3-margin-2">
             {this.props.tag_author}
           </span>
-          <span className="w3-tag w3-round w3-blue-grey">
+          <span className="w3-tag w3-round w3-blue-grey w3-margin-2">
             {this.props.tag_language}
           </span>
         </header>
+        <hr className="style14 w3-margin-0"/>
         <div className="w3-container">
           <p>{this.props.daily_tech_news}</p>
-          <hr/>
+          <hr className="style12" />
           <p>{this.props.daily_quote}</p>
-          <hr/>
+          <hr className="style12" />
           <p>{this.props.daily_code_snippet}</p>
-          <hr/>
+          <hr className="style14" />
           <p>{this.props.snippet_description}</p>
         </div>
       </div>
     );
   }
 }
+
+export default Card;
