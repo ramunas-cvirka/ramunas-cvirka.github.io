@@ -16,31 +16,46 @@ class CardsList extends React.Component {
        state: 'cards',
        asArray: true
     });
-    console.log(this.state);
   }
   componentWillUnmount () { // So that we don't get listeners keep adding, we will unmount them
      base.removeBinding(this.ref);
   }
   render() {
-    // console.log(this.state)
-    // for (let i = 0; i < this.cards.length; i+=3) {
-    //    console.log(i);
-    // }
+    let split_cards_list = [];
+    let total_cards = this.state.cards.length;
+    for (let i = 0; i < total_cards; i+=3) {
+      let row_list = [];
+      let ll = total_cards - i - 3;
+      if (ll >= 0) {
+        row_list.push([i, i + 1, i + 2]);
+      } else if ( ll === -1) {
+        row_list.push([i, i + 1]);
+      } else {
+        row_list.push([i]);
+      }
+      split_cards_list.push(row_list);
+    }
+
     return (
       <div className="w3-container">
-        <div className="w3-row">
-          <div className="w3-col" style={{ width: '14%' }}><br/></div>
-          <div className="w3-col" style={{ width: '24%' }}>
-            <Card {...this.state.cards[0]} />
-          </div>
-          <div className="w3-col" style={{ width: '24%' }}>
-            <Card {...this.state.cards[0]} />
-          </div>
-          <div className="w3-col" style={{ width: '24%' }}>
-            <Card {...this.state.cards[0]} />
-          </div>
-          <div className="w3-col" style={{ width: '14%' }}><br/></div>
-        </div>
+        {split_cards_list.map(row => {
+          return (
+            <div className="w3-row">
+              <div className="w3-col" style={{ width: '14%' }}><br/></div>
+              <div className="w3-col" style={{ width: '24%' }}>
+                <Card {...this.state.cards[row[0]]} />
+              </div>
+              <div className="w3-col" style={{ width: '24%' }}>
+                <Card {...this.state.cards[row[1]]} />
+              </div>
+              <div className="w3-col" style={{ width: '24%' }}>
+                <Card {...this.state.cards[row[2]]} />
+              </div>
+              <div className="w3-col" style={{ width: '14%' }}><br/></div>
+            </div>
+          );
+        }
+        )}
       </div>
     );
   }

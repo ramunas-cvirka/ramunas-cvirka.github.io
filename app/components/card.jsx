@@ -18,6 +18,10 @@ class Card extends React.Component {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var date = new Date(this.props.tag_date);
 
+    console.log(this.props.tag_date);
+    if (this.props.tag_date === undefined) {
+      return false;
+    }
     return (
       <div className="w3-card-4 w3-margin">
         <header className="w3-container w3-light-grey w3-padding-8">
