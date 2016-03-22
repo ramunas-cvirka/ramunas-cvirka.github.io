@@ -5,7 +5,7 @@ class PostModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: props.visibility
+      switch: props.switch
       // tag_date: props.tag_date,
       // tag_author: props.tag_author,
       // daily_quote: props.daily_quote,
@@ -16,11 +16,12 @@ class PostModal extends React.Component {
     };
   }
   hideModal(e) {
-    this.setState({visibility: 'none'});
+    this.style.display = 'none'
+    this.setState({switch: 'none'});
   }
   render() {
     return (
-      <div id="id01" className="w3-modal" style={{display: this.state.visibility}}>
+      <div className="w3-modal" style={{display: this.state.switch}}>
         <div className="w3-modal-content w3-card-8 w3-animate-zoom" style={{maxWidth:'600px'}}>
 
           <div className="w3-container">
@@ -61,4 +62,5 @@ class PostModal extends React.Component {
   }
 }
 
-ReactDOM.render(<PostModal visibility='block'/>, document.getElementById('post'));
+export default PostModal;
+// ReactDOM.render(<PostModal visibility='block'/>, document.getElementById('post'));

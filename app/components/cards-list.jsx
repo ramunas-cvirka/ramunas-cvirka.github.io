@@ -61,4 +61,5 @@ class CardsList extends React.Component {
   }
 }
 
-ReactDOM.render(<CardsList/>, document.getElementById('main'));
+export default CardsList;
+// ReactDOM.render(<CardsList/>, document.getElementById('main'));
