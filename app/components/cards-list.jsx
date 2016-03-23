@@ -5,7 +5,7 @@ import Card from './card.jsx';
 
 var base = Rebase.createClass('https://ramunas.firebaseio.com');
 
-class CardsList extends React.Component {
+export default class CardsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { cards: [] };
@@ -17,7 +17,7 @@ class CardsList extends React.Component {
        asArray: true
     });
   }
-  componentWillUnmount () { // So that we don't get listeners keep adding, we will unmount them
+  componentWillUnmount () {
      base.removeBinding(this.ref);
   }
   render() {
@@ -60,6 +60,3 @@ class CardsList extends React.Component {
     );
   }
 }
-
-export default CardsList;
-// ReactDOM.render(<CardsList/>, document.getElementById('main'));

@@ -10,26 +10,18 @@ class Joint extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sw: 'none'
-      // cards: []
+      switch: 'none'
     };
   }
-  // componentDidMount() {
-  //   this.ref = base.bindToState('cards', {
-  //      context: this,
-  //      state: 'cards',
-  //      asArray: true
-  //   });
-  // }
-  // componentWillUnmount () { // So that we don't get listeners keep adding, we will unmount them
-  //    base.removeBinding(this.ref);
-  // }
+  triggerSwitch(prop) {
+    this.setState({switch: prop.switch})
+  }
   toggleState() {
-    if (this.state.sw === 'none') {
-      this.setState({sw: 'block'});
+    if (this.state.switch === 'none') {
+      this.setState({switch: 'block'});
     }
     else {
-      this.setState({sw: 'none'});
+      this.setState({switch: 'none'});
     }
   }
   render() {
@@ -42,7 +34,7 @@ class Joint extends React.Component {
           <a href="#">Login</a>
         </div>
         <CardsList/>
-        <PostModal switch={this.state.sw}/>
+        <PostModal switch={this.state.switch} onSwitch={this.triggerSwitch.bind(this)}/>
       </div>
     );
   }

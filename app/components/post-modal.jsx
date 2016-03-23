@@ -1,23 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class PostModal extends React.Component {
+export default class PostModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       switch: props.switch
-      // tag_date: props.tag_date,
-      // tag_author: props.tag_author,
-      // daily_quote: props.daily_quote,
-      // tag_language: props.tag_language,
-      // daily_tech_news: props.daily_tech_news,
-      // daily_code_snippet: props.daily_code_snippet,
-      // snippet_description: props.snippet_description
     };
   }
   hideModal(e) {
-    this.style.display = 'none'
-    this.setState({switch: 'none'});
+    this.props.onSwitch({switch: 'none'});
+  }
+  componentWillReceiveProps(prop) {
+    this.setState({switch: prop.switch})
   }
   render() {
     return (
@@ -61,6 +56,3 @@ class PostModal extends React.Component {
     );
   }
 }
-
-export default PostModal;
-// ReactDOM.render(<PostModal visibility='block'/>, document.getElementById('post'));

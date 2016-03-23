@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Card extends React.Component {
+export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,6 @@ class Card extends React.Component {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var date = new Date(this.props.tag_date);
 
-    console.log(this.props.tag_date);
     if (this.props.tag_date === undefined) {
       return false;
     }
@@ -49,5 +48,3 @@ class Card extends React.Component {
     );
   }
 }
-
-export default Card;
