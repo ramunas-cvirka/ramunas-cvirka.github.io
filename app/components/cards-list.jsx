@@ -38,18 +38,18 @@ export default class CardsList extends React.Component {
 
     return (
       <div className="w3-container">
-        {split_cards_list.map(row => {
+        {split_cards_list.map((row, index) => {
           return (
             <div className="w3-row">
               <div className="w3-col" style={{ width: '14%' }}><br/></div>
               <div className="w3-col" style={{ width: '24%' }}>
-                <Card {...this.state.cards[row[0]]} />
+                <Card {...this.state.cards[row[0]]} key={index*3}/>
               </div>
               <div className="w3-col" style={{ width: '24%' }}>
-                <Card {...this.state.cards[row[1]]} />
+                <Card {...this.state.cards[row[1]]} key={index*3 + 1}/>
               </div>
               <div className="w3-col" style={{ width: '24%' }}>
-                <Card {...this.state.cards[row[2]]} />
+                <Card {...this.state.cards[row[2]]} key={index*3 + 2}/>
               </div>
               <div className="w3-col" style={{ width: '14%' }}><br/></div>
             </div>

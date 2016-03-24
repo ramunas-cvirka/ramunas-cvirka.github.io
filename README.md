@@ -1,6 +1,6 @@
 # Second Reactor
 ##### Why the name ?
-It's a second attempt at developing React and Firebase based wep application. 
+It's a second attempt at developing React and Firebase based wep application.
 
 ##### The idea
 Is to have dynamic content using github pages hosting.
@@ -13,9 +13,9 @@ Posted just by ME, hopefully daily, emphasizing the day of post, and interesting
 
 ### Todos
 
- - Implemenent posting to firebase.
+ - Implement posting to firebase.
  - Implement google authentication.
- 
+
 License
 ----
 

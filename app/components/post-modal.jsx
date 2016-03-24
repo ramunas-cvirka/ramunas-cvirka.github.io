@@ -35,12 +35,12 @@ export default class PostModal extends React.Component {
                 </div>
                 <div className="w3-half">
                   <select className="w3-select w3-margin-4" name="option">
-                    <option value="" selected>Ruby</option>
-                    <option value="">Python</option>
-                    <option value="">JavaScript</option>
-                    <option value="">Go</option>
-                    <option value="">C#</option>
-                    <option value="">Assembler</option>
+                    <option defaultValue>Ruby</option>
+                    <option>Python</option>
+                    <option>JavaScript</option>
+                    <option>Go</option>
+                    <option>C#</option>
+                    <option>Assembler</option>
                   </select>
                 </div>
               </div>
