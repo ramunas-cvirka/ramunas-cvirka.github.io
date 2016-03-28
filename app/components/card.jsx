@@ -1,49 +1,50 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   key: props.key,
-    //   tag_date: props.tag_date,
-    //   tag_author: props.tag_author,
-    //   daily_quote: props.daily_quote,
-    //   tag_language: props.tag_language,
-    //   daily_tech_news: props.daily_tech_news,
-    //   daily_code_snippet: props.daily_code_snippet,
-    //   snippet_description: props.snippet_description
-    // };
+    this.state = {
+      // key: props.key,
+      tagDate: props.tagDate,
+      tagAuthor: props.tagAuthor,
+      dailyQuote: props.dailyQuote,
+      tagLanguage: props.tagLanguage,
+      dailyTechNews: props.dailyTechNews,
+      dailyCodeSnippet: props.dailyCodeSnippet,
+      snippetDescription: props.snippetDescription,
+    };
   }
   render() {
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    var date = new Date(this.props.tag_date);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const date = new Date(this.props.tagDate);
 
-    if (this.props.tag_date === undefined) {
+    if (this.props.tagDate === undefined) {
       return false;
     }
     return (
       <div className="w3-card-4 w3-margin">
         <header className="w3-container w3-light-grey w3-padding-8">
           <span className="w3-tag w3-round w3-indigo w3-margin-2">
-            {date.getDate() + ' ' + months[date.getMonth()] + ', ' + date.getFullYear()}
+            {`${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`}
           </span>
           <span className="w3-tag w3-round w3-teal w3-margin-2">
-            {this.props.tag_author}
+            {this.props.tagAuthor}
           </span>
           <span className="w3-tag w3-round w3-blue-grey w3-margin-2">
-            {this.props.tag_language}
+            {this.props.tagLanguage}
           </span>
         </header>
         <hr className="style14 w3-margin-0"/>
         <div className="w3-container">
-          <p>{this.props.daily_tech_news}</p>
+          <p>{this.props.dailyTechNews}</p>
           <hr className="style12" />
-          <p>{this.props.daily_quote}</p>
+          <p>{this.props.dailyQuote}</p>
           <hr className="style12" />
-          <p>{this.props.daily_code_snippet}</p>
+          <p>{this.props.dailyCodeSnippet}</p>
           <hr className="style14" />
-          <p>{this.props.snippet_description}</p>
+          <p>{this.props.snippetDescription}</p>
         </div>
       </div>
     );

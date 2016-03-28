@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import Rebase from 're-base';
 import Card from './card.jsx';
 
-var base = Rebase.createClass('https://ramunas.firebaseio.com');
+const base = Rebase.createClass('https://ramunas.firebaseio.com');
 
 export default class CardsList extends React.Component {
   constructor(props) {
@@ -12,44 +12,44 @@ export default class CardsList extends React.Component {
   }
   componentDidMount() {
     this.ref = base.bindToState('cards', {
-       context: this,
-       state: 'cards',
-       asArray: true
+      context: this,
+      state: 'cards',
+      asArray: true,
     });
   }
-  componentWillUnmount () {
-     base.removeBinding(this.ref);
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
   }
   render() {
-    let split_cards_list = [];
-    let total_cards = this.state.cards.length;
-    for (let i = 0; i < total_cards; i+=3) {
-      let row_list = [];
-      let ll = total_cards - i - 3;
+    const splitCardsList = [];
+    const totalCards = this.state.cards.length;
+    for (let i = 0; i < totalCards; i += 3) {
+      const rowList = [];
+      const ll = totalCards - i - 3;
       if (ll >= 0) {
-        row_list.push([i, i + 1, i + 2]);
-      } else if ( ll === -1) {
-        row_list.push([i, i + 1]);
+        rowList.push(...[i, i + 1, i + 2]);
+      } else if (ll === -1) {
+        rowList.push(...[i, i + 1]);
       } else {
-        row_list.push([i]);
+        rowList.push(...[i]);
       }
-      split_cards_list.push(row_list);
+      splitCardsList.push(rowList);
     }
 
     return (
       <div className="w3-container">
-        {split_cards_list.map((row, index) => {
+        {splitCardsList.map((row, index) => {
           return (
             <div className="w3-row">
               <div className="w3-col" style={{ width: '14%' }}><br/></div>
               <div className="w3-col" style={{ width: '24%' }}>
-                <Card {...this.state.cards[row[0]]} key={index*3}/>
+                <Card {...this.state.cards[row[0]]} key={index * 3}/>
               </div>
               <div className="w3-col" style={{ width: '24%' }}>
-                <Card {...this.state.cards[row[1]]} key={index*3 + 1}/>
+                <Card {...this.state.cards[row[1]]} key={index * 3 + 1}/>
               </div>
               <div className="w3-col" style={{ width: '24%' }}>
-                <Card {...this.state.cards[row[2]]} key={index*3 + 2}/>
+                <Card {...this.state.cards[row[2]]} key={index * 3 + 2}/>
               </div>
               <div className="w3-col" style={{ width: '14%' }}><br/></div>
             </div>
