@@ -10,12 +10,6 @@ export default class PostModal extends React.Component {
     super(props);
     this.state = {
       switch: props.switch,
-      // tagLanguage: '',
-      // tagAuthor: '',
-      // dailyQuote: this.props.dailyQuote,
-      // dailyTechNews: '',
-      // dailyCodeSnippet: '',
-      // snippetDescription: '',
     };
   }
   hideModal() {
@@ -25,20 +19,17 @@ export default class PostModal extends React.Component {
     this.setState({ switch: prop.switch });
   }
   postData() {
-    console.log(this.state);
     base.push('cards', { data:
-      {
-        tagDate: Date.now(),
-        tagLanguage: this.state.tagLanguage || 'Ruby',
-        tagAuthor: this.state.tagAuthor,
-        dailyQuote: this.state.dailyQuote,
-        dailyTechNews: this.state.dailyTechNews,
-        dailyCodeSnippet: this.state.dailyCodeSnippet,
-        snippetDescription: this.state.snippetDescription,
-      },
-      then() {
-        console.log('dashboard');
-      },
+    {
+      tagDate: Date.now(),
+      tagLanguage: this.state.tagLanguage || 'ruby',
+      tagAuthor: this.state.tagAuthor,
+      dailyQuote: this.state.dailyQuote,
+      dailyTechNews: this.state.dailyTechNews,
+      dailyCodeSnippet: this.state.dailyCodeSnippet,
+      snippetDescription: this.state.snippetDescription,
+    },
+      then() { },
     });
   }
   render() {
@@ -97,12 +88,12 @@ export default class PostModal extends React.Component {
                     className="w3-select w3-margin-4"
                     name="option"
                     valueLink={linkState(this, 'tagLanguage')}>
-                    <option defaultValue>Ruby</option>
-                    <option>Python</option>
-                    <option>JavaScript</option>
-                    <option>Go</option>
-                    <option>C#</option>
-                    <option>Assembler</option>
+                    <option defaultValue>ruby</option>
+                    <option>python</option>
+                    <option>javascript</option>
+                    <option>go</option>
+                    <option>csharp</option>
+                    <option>x86asm</option>
                   </select>
                 </div>
               </div>

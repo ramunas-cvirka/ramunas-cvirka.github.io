@@ -30,15 +30,7 @@ class Joint extends React.Component {
   }
   toggleAuth() {
     if (this.state.authAction === 'Login') {
-      base.authWithOAuthPopup('google', (error, authData) => {
-        // let type = '';
-        // if (error) {
-          // type = 'error';
-        // } else {
-          // type = 'success';
-          // error = 'Authenticated successfully.';
-          // $('#gplus').addClass('fa-sign-out').removeClass('fa-google-plus');
-        // }
+      base.authWithOAuthPopup('google', () => {
         this.setState({ authAction: 'Logout' });
       });
     } else {
