@@ -1,9 +1,14 @@
 import React from 'react';
 import Rebase from 're-base';
 import linkState from 'react-link-state';
+import {
+  ToastContainer,
+  ToastMessage,
+} from 'react-toastr';
 // import ReactDOM from 'react-dom';
 
 const base = Rebase.createClass('https://ramunas.firebaseio.com');
+const tFak = React.createFactory(ToastMessage.animation);
 
 export default class PostModal extends React.Component {
   constructor(props) {
@@ -18,26 +23,41 @@ export default class PostModal extends React.Component {
   componentWillReceiveProps(prop) {
     this.setState({ switch: prop.switch });
   }
+  errorCallBack(err) {
+    if (err) {
+      this.refs.container.error("You're not The One.", 'Failure!', {
+        closeButton: true,
+      });
+    } else {
+      this.hideModal();
+    }
+  }
   postData() {
-    base.push('cards', { data:
-    {
-      tagDate: Date.now(),
-      tagLanguage: this.state.tagLanguage || 'ruby',
-      tagAuthor: this.state.tagAuthor,
-      dailyQuote: this.state.dailyQuote,
-      dailyTechNews: this.state.dailyTechNews,
-      dailyCodeSnippet: this.state.dailyCodeSnippet,
-      snippetDescription: this.state.snippetDescription,
-    },
-      then() { },
-    });
+    if (this.state.tagAuthor && this.state.dailyQuote && this.state.dailyTechNews &&
+        this.state.dailyCodeSnippet && this.state.snippetDescription && base.getAuth()) {
+      base.push('cards', { data:
+      {
+        tagDate: 0 - Date.now(),
+        tagLanguage: this.state.tagLanguage || 'ruby',
+        tagAuthor: this.state.tagAuthor,
+        dailyQuote: this.state.dailyQuote,
+        dailyTechNews: this.state.dailyTechNews,
+        dailyCodeSnippet: this.state.dailyCodeSnippet,
+        snippetDescription: this.state.snippetDescription,
+      }, then: this.errorCallBack.bind(this),
+      });
+    } else {
+      this.refs.container.warning("Don't waste my time.", 'Please!', {
+        closeButton: true,
+      });
+    }
   }
   render() {
     const divStyle = { display: this.state.switch };
     return (
       <div className="w3-modal" style={divStyle}>
-        <div className="w3-modal-content w3-card-8 w3-animate-zoom" style={{ maxWidth: '600px' }}>
-
+        <div className="w3-modal-content w3-card-8 w3-animate-top" style={{ maxWidth: '600px' }}>
+          <form ref="fbForm">
           <div className="w3-container">
             <div className="w3-section">
               <label><b>Tech news</b></label>
@@ -108,8 +128,9 @@ export default class PostModal extends React.Component {
               Cancel
             </button>
           </div>
-
+          </form>
         </div>
+        <ToastContainer ref="container" toastMessageFactory={tFak} className="toast-top-right" />
       </div>
     );
   }

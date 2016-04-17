@@ -19,7 +19,7 @@ export default class Card extends React.Component {
   render() {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const date = new Date(this.props.tagDate);
+    const date = new Date(0 - this.props.tagDate);
 
     if (this.props.tagDate === undefined) {
       return false;

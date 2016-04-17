@@ -15,6 +15,10 @@ export default class CardsList extends React.Component {
       context: this,
       state: 'cards',
       asArray: true,
+      queries: {
+        orderByChild: 'tagDate',
+        limitToFirst: 9,
+      },
     });
   }
   componentWillUnmount() {

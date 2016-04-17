@@ -3,8 +3,13 @@ import ReactDOM from 'react-dom';
 import Rebase from 're-base';
 import CardsList from './cards-list.jsx';
 import PostModal from './post-modal.jsx';
+import {
+  ToastContainer,
+  ToastMessage,
+} from 'react-toastr';
 
 const base = Rebase.createClass('https://ramunas.firebaseio.com');
+const tFak = React.createFactory(ToastMessage.animation);
 
 class Joint extends React.Component {
 
@@ -30,11 +35,23 @@ class Joint extends React.Component {
   }
   toggleAuth() {
     if (this.state.authAction === 'Login') {
-      base.authWithOAuthPopup('google', () => {
-        this.setState({ authAction: 'Logout' });
+      base.authWithOAuthPopup('google', (err) => {
+        if (err) {
+          this.refs.container.warning('Something went terribly wrong!', '', {
+            closeButton: true,
+          });
+        } else {
+          this.refs.container.success("Your're IN!", '', {
+            closeButton: true,
+          });
+          this.setState({ authAction: 'Logout' });
+        }
       });
     } else {
       base.unauth();
+      this.refs.container.success("Your're OUT!", '', {
+        closeButton: true,
+      });
       this.setState({ authAction: 'Login' });
     }
   }
@@ -48,6 +65,7 @@ class Joint extends React.Component {
         </div>
         <CardsList/>
         <PostModal switch={this.state.switch} onSwitch={this.triggerSwitch.bind(this)}/>
+        <ToastContainer ref="container" toastMessageFactory={tFak} className="toast-top-right" />
       </div>
     );
   }
