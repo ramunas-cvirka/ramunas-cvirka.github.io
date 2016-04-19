@@ -13,8 +13,8 @@ Posted just by ME, hopefully daily, emphasizing the day of post, and interesting
 
 ### Todos
 
- - Implement posting to firebase.
- - Implement google authentication.
+ - Improve layout, mainly menu bar
+ - Add more content
 
 License
 ----

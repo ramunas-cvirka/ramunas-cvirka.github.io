@@ -57,7 +57,6 @@ export default class PostModal extends React.Component {
     return (
       <div className="w3-modal" style={divStyle}>
         <div className="w3-modal-content w3-card-8 w3-animate-top" style={{ maxWidth: '600px' }}>
-          <form ref="fbForm">
           <div className="w3-container">
             <div className="w3-section">
               <label><b>Tech news</b></label>
@@ -128,7 +127,6 @@ export default class PostModal extends React.Component {
               Cancel
             </button>
           </div>
-          </form>
         </div>
         <ToastContainer ref="container" toastMessageFactory={tFak} className="toast-top-right" />
       </div>
